@@ -59,10 +59,31 @@ exports.login = async (req, res) => {
   // it takes 3 parameters name, value, options
   res.cookie(String(existingUser.id), token, {
     path: "/",
-    expires: new Date(Date.now() + 1000 * 30),  // here thousend means 1 second
+    expiresIn: new Date(Date.now() + 1000 * 30),  // here thousend means 1 second
     httpOnly: true, //you can only access the cookies on browser if you add the httpOnly property true
     sameSite: "lax",
   })  
 
   return res.status(200).json({message: "Successfullly Login"}); 
+}
+
+exports.logout = async (req, res) => {
+
+  const cookies = req.headers.cookie;
+  const prevToken = cookies.split("=")[1];
+  
+  if (!prevToken) {
+    return res.status(404).json({ message: "No token found" });
+  }
+  
+  jwt.verify(String(prevToken), process.env.JWT_SECRET_KEY, (error, user) => {
+  
+    if (error) {
+      return res.status(400).json({ message: "Invalid token" });
+    }
+  
+    res.clearCookie(String(user.id));
+  
+    return res.status(200).json({ message: "Successfully logged out" });
+  });
 }
