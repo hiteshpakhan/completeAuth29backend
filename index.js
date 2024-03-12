@@ -15,9 +15,9 @@ app.use(express.json());
 
 app.use("/api", userRouter);
 
-// app.get("/",(req, res) => {
-//     res.status(200).send("hello world");
-// })
+app.get("/",(req, res) => {
+    res.status(200).send("hello world");
+})
 
 mongoose
 .connect(process.env.MONGOURL)
