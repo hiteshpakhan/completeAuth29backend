@@ -6,3 +6,4 @@ contents of .env file:
 
         SECRETKEY="temperorysecretkeythatwehavecreated"
         MONGOURL="mongodb+srv://hitesh5pakhan:Uo6eFI1i5yy6lwnY@cluster0.5yaqwrv.mongodb.net/29auth?retryWrites=true&w=majority"
+        PORT=5000
