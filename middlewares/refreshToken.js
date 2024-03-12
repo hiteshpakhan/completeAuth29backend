@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 exports.refreshToken = async (req, res, next) => {
-  const cookies = req.headers.cookie;
+  const cookies = await req.headers.cookie;
   const prevToken = cookies.split("=")[1];
   
   if (!prevToken) {

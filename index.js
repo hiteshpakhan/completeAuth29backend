@@ -13,6 +13,16 @@ app.use(cors({ origin: "https://complete-auth29frontend2.vercel.app", credential
 app.use(cookieParser());
 app.use(express.json());
 
+app.use((req, res, next) => {
+    res.set({
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+        "Access-Control-Allow-Headers": "'Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token'",
+    });
+
+    next();
+});
+
 app.use("/api", userRouter);
 
 app.get("/",(req, res) => {
