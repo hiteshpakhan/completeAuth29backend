@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // middlewares
-app.use(cors({ origin: "https://complete-auth29frontend2.vercel.app", credentials: true }));
+app.use(cors({credentials: true}));
 app.use(cookieParser());
 app.use(express.json());
 
